@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -64,7 +65,7 @@ export class WalletDashboardComponent implements OnInit {
           this.toastr.warning('Nenhuma transação encontrada para o filtro.')
         }
       } catch (e) {
-        this.toastr.error('Tivemos um problema, tente novamente')
+        this.errorHelper(e)
       }
       this.loading = false
     } else {
@@ -121,7 +122,7 @@ export class WalletDashboardComponent implements OnInit {
       const result = await this.categoryService.getCategories().toPromise()
       this.listCategories = result
     } catch (e) {
-      this.toastr.error('Tivemos um problema, tente novamente')
+      this.errorHelper(e)
     }
   }
 
@@ -129,14 +130,30 @@ export class WalletDashboardComponent implements OnInit {
     try {
       const result = await this.transactionService.create(this.newTransaction).toPromise()
       this.modalRef.hide()
+      this.getBalance()
       this.toastr.success('Transação salva com sucesso')
     } catch (e) {
-      this.toastr.error('Tivemos um problema, tente novamente')
+      this.errorHelper(e)      
     }
   }
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
+  }
+
+  errorHelper(e: HttpErrorResponse) {
+    if (e.status === 400) {
+      switch (e.error.name) {
+        case 'MissingParamError':
+          this.toastr.warning('Preencha todas as informações')
+          break
+        case 'InvalidParamError':
+          this.toastr.warning('Dados inválidos')
+          break
+        default:
+          this.toastr.error('Tivemos um problema, tente novamente')
+      }
+    }
   }
 
 }
