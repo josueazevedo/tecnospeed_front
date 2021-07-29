@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Transaction } from './models/transaction.model';
 
 const BASE_URL = 'http://localhost:4000/'
 
@@ -20,6 +21,10 @@ export class TransactionService {
 
   getTransactionsCsv(startDate: string, endDate: string) {
     return (BASE_URL + `transaction/export?startdate=${startDate}&enddate=${endDate}`)
+  }
+
+  create(transaction: Transaction) {
+    return this.http.post(BASE_URL + 'transaction', transaction)
   }
 
 }

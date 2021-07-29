@@ -8,6 +8,8 @@ import { BalanceComponent } from './components/balance/balance.component';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxLoadingModule } from 'ngx-loading';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { CategoriesComponent } from './categories/categories.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -15,7 +17,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
   declarations: [
     WalletDashboardComponent,
     WalletNavbarComponent,
-    BalanceComponent
+    BalanceComponent,
+    CategoriesComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +26,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     NgxMaskModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
+    ModalModule.forRoot()
   ]
 })
 export class WalletModule { }

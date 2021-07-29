@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { CategoryService } from '../category.service';
+import { Transaction } from '../models/transaction.model';
 import { TransactionService } from '../transaction.service';
 
 @Component({
@@ -19,11 +22,22 @@ export class WalletDashboardComponent implements OnInit {
   startDate = new FormControl('', [Validators.required, Validators.maxLength(8)]);
   endDate = new FormControl('', [Validators.required, Validators.maxLength(8)]);
   loading = false
+  modalRef: BsModalRef;
+  listCategories: any = []
+  newTransaction: Transaction
 
-  constructor(private transactionService: TransactionService, private toastr: ToastrService) { }
+  constructor(
+    private transactionService: TransactionService, 
+    private toastr: ToastrService,
+    private categoryService: CategoryService,
+    private modalService: BsModalService
+  ) { }
 
   ngOnInit(): void {
     this.getBalance()
+    this.getCategories()
+    this.newTransaction = new Transaction()
+
   }
 
   async getBalance() {
@@ -100,6 +114,29 @@ export class WalletDashboardComponent implements OnInit {
     const mes = date.substring(2,4)
     const ano = date.substring(4,8)
     return `${ano}-${mes}-${dia}`
+  }
+
+  async getCategories() {
+    try {
+      const result = await this.categoryService.getCategories().toPromise()
+      this.listCategories = result
+    } catch (e) {
+      this.toastr.error('Tivemos um problema, tente novamente')
+    }
+  }
+
+  async saveTransaction() {
+    try {
+      const result = await this.transactionService.create(this.newTransaction).toPromise()
+      this.modalRef.hide()
+      this.toastr.success('Transação salva com sucesso')
+    } catch (e) {
+      this.toastr.error('Tivemos um problema, tente novamente')
+    }
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
 }
