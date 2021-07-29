@@ -7,6 +7,7 @@ import { WalletNavbarComponent } from './components/wallet-navbar/wallet-navbar.
 import { BalanceComponent } from './components/balance/balance.component';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxLoadingModule } from 'ngx-loading';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -22,6 +23,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     NgxMaskModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+    NgxLoadingModule.forRoot({})
   ]
 })
 export class WalletModule { }
