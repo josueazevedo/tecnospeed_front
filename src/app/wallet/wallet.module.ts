@@ -4,13 +4,15 @@ import { WalletDashboardComponent } from './wallet-dashboard/wallet-dashboard.co
 import { RouterModule } from '@angular/router';
 import { WalletRouting } from './wallet-routing.module';
 import { WalletNavbarComponent } from './components/wallet-navbar/wallet-navbar.component';
+import { BalanceComponent } from './components/balance/balance.component';
 
 
 
 @NgModule({
   declarations: [
     WalletDashboardComponent,
-    WalletNavbarComponent
+    WalletNavbarComponent,
+    BalanceComponent
   ],
   imports: [
     CommonModule,
