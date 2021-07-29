@@ -1,1 +1,61 @@
-<p>wallet-dashboard works!</p>
+<app-wallet-navbar></app-wallet-navbar>
+<section class="container-xl main">
+    <strong>Seja bem vindo(a)!</strong>
+    <app-balance [saldo]="balance"></app-balance>
+</section>
+<hr>
+<section class="container">
+    <div class="row">
+        <form>
+            <div class="row ">
+                <div class="col-auto">
+                    <label for="dtinicio" class="visually-hidden">Data Inicial</label>
+                    <input type="text" [formControl]="startDate" mask="00/00/0000" class="form-control" id="dtinicio" >
+                  </div>
+                  <div class="col-auto">
+                    <label for="dtfim" class="visually-hidden">Data Final</label>
+                    <input type="text" [formControl]="endDate" mask="00/00/0000" class="form-control" id="dtfim" >
+                  </div>
+                  <div class="col-auto align-self-end">
+                    <button id="btn" (click)="filterTransactions()" type="submit" class="btn btn-primary">Filtrar</button>
+                    <button id="btn" (click)="exportCSV()" class="btn btn-primary ml-1">Exportar</button>
+                  </div>
+                  <div class="col-auto align-self-end">
+                    <button id="btn" type="submit" class="btn btn-primary">Nova Transação</button>
+                  </div>
+            </div>       
+          </form>
+    </div>
+</section>
+<br>
+<section class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Data</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Observação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of listTransactions">
+            <th scope="row">{{ transaction.createdAt | date: 'dd/MM/yyyy' }}</th>
+            <td>{{ transaction['category.name'] }}</td>
+            <td>{{ transaction.operation == 'in' ? transaction.value : (transaction.value*-1) }}</td>
+            <td>{{ transaction.notes }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="listTransactions.length == 0" class="alert alert-primary">
+        Nenhuma transação disponível
+      </div>
+      <nav *ngIf="listTransactions.length != 0" aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" (click)="getPreviousPage()">Anterior</a></li>
+          <li *ngFor="let item of [].constructor(totalPages); let i = index" class="page-item"><a class="page-link" (click)="getPage(i)">{{i+1}}</a></li>
+          <li class="page-item"><a class="page-link" (click)="getNextPage()">Próxima</a></li>
+        </ul>
+      </nav>
+</section>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>

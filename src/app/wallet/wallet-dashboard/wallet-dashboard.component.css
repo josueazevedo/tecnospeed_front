@@ -1,0 +1,12 @@
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0.7em 0.1em 0 1em ;
+    align-items: center;
+}
+
+.container-filter {
+    display: flex;
+    align-items: flex-start;
+}
