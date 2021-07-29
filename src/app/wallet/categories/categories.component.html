@@ -1,0 +1,78 @@
+<app-wallet-navbar></app-wallet-navbar>
+<section class="container">
+    <div class="row mt-3">
+            <div class="row ">
+                <div class="col-auto  align-self-center">
+                    <strong>Lista de Categorias</strong>
+                  </div>
+                  <div class="col-auto align-self-end">
+                    <button id="btn" type="submit" (click)="openMocalCreateCategory(newcategory)" class="btn btn-primary">Nova</button>
+                  </div>
+            </div>       
+    </div>
+</section>
+<br>
+<section class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Categoria</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listCategories; let i = index">
+            <th scope="row">{{ i }}</th>
+            <td>{{ item.name }}</td>
+            <td><button id="btn" type="submit" (click)="openMocalEditCategory(editcategory, item)" class="btn btn-primary">Editar</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="listCategories.length == 0" class="alert alert-primary">
+        Nenhuma categoria disponível
+      </div>
+</section>
+
+<ng-template #newcategory>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Nova Categoria</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="mb-3">
+            <label for="name" class="form-label">Categoria</label>
+            <input id="name" name="name" [(ngModel)]="category.name" type="text" class="form-control">
+         </div>
+        <div class="d-flex align-items-center justify-content-center">
+            <button id="btn-salvar" type="submit" (click)="saveCategory()" class="btn btn-primary">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+  <ng-template #editcategory>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Editar Categoria</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="mb-3">
+            <label for="name" class="form-label">Categoria</label>
+            <input id="name" name="name" [(ngModel)]="category.name" type="text" class="form-control">
+         </div>
+        <div class="d-flex align-items-center justify-content-center">
+            <button id="btn-salvar" type="submit" (click)="updateCategory()" class="btn btn-primary">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" ></ngx-loading>
