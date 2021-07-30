@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Category } from './models/category.model';
 
-const BASE_URL = 'http://localhost:4000/'
+const BASE_URL = 'http://localhost:4000/api/'
 
 @Injectable({
   providedIn: 'root'
