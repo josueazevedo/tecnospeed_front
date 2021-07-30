@@ -1,27 +1,50 @@
-# Tecnospeed
+<h2 align="center">Tecnospeed - Carteira Virtual</h2>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.8.
+## Projeto
+<p align="center">Cliente para a aplicação Carteira Virtual.</p>
 
-## Development server
+<h3 id="requisitos">### Pré-requisitos</h3>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Node.js](https://nodejs.org/en/) e [Angular](https://angular.io/). 
 
-## Code scaffolding
+### 🎲 Executando o Front End 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+# Clone este repositório
+$ git clone <https://github.com/josueazevedo/tecnospeed_front>
 
-## Build
+# Acesse a pasta do projeto no terminal/cmd
+$ cd 'caminho do projeto'
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+# Instale as dependências
+$ npm install
 
-## Running unit tests
+# Execute a aplicação
+$ ng serve
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# O servidor inciará na porta:4200 - acesse <http://localhost:4200>
 
-## Running end-to-end tests
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+<h3 id="backend">### Projeto Back end</h3>
 
-## Further help
+O back end para a qual este client foi projetado, encontra-se disponível no repositório abaixo:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+[Tecnospeed - Carteira Virtual](https://github.com/josueazevedo/tecnospeed_carteiravirtual)
+
+Informações sobre as features implementadas, estão disponiveis no repositórios acima.
+
+<h3 id="tecnologias"> ### 🛠 Tecnologias </h3>
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- [Node.js](https://nodejs.org/en/)
+- [Angular](https://angular.io/)
+
+<div>
+<h2 id="autor">Autor </h2>
+ <img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C4D03AQHEg18Ma1jVxQ/profile-displayphoto-shrink_200_200/0/1595351291772?e=1628121600&v=beta&t=ywGWHY4XWyXGnYtcCeXRDwFhQw1O2iWAYUH3MTl66-k" width="100px;" alt=""/>
+ <h3><b>Josué Azevedo</b></h3>
+
+[![Linkedin Badge](https://img.shields.io/badge/-Josue-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/tgmarinho/)](https://www.linkedin.com/in/josu%C3%A9-azevedo-14449bbb/) 
