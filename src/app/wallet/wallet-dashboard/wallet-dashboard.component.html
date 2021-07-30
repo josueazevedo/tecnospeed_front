@@ -42,7 +42,7 @@
           <tr *ngFor="let transaction of listTransactions">
             <th scope="row">{{ transaction.createdAt | date: 'dd/MM/yyyy' }}</th>
             <td>{{ transaction['category.name'] }}</td>
-            <td>{{ transaction.operation == 'in' ? transaction.value : (transaction.value*-1) }}</td>
+            <td>{{ (transaction.operation == 'in' ? transaction.value : (transaction.value*-1)) | currency:'BRL':true:'1.2-2'  }}</td>
             <td>{{ transaction.notes }}</td>
           </tr>
         </tbody>
